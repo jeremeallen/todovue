@@ -1,11 +1,13 @@
 /**
  * Created by jeremeallen on 5/24/15.
  */
+
+var data_json = JSON.parse(localStorage.getItem("tasks")) || [];
+
 new Vue({
     el: '#tasks',
     data: {
-        heading: 'Hello World',
-        tasks: [],
+        tasks: data_json,
         newTask: ''
     },
 
@@ -43,32 +45,51 @@ new Vue({
             });
 
             this.newTask = '';
+
+            this.updateLocalDb(); //Must be able to watch for the model change and fire this from one spot....
         },
 
         removeTask: function(task) {
             this.tasks.$remove(task);
+
+            this.updateLocalDb();  //Must be able to watch for the model change and fire this from one spot....
         },
 
         editTask: function(task) {
             this.removeTask(task);
             this.newTask = task.body;
             this.$$.newTask.focus();
+
+            this.updateLocalDb();  //Must be able to watch for the model change and fire this from one spot....
         },
 
         toggleTaskCompletion: function(task) {
             task.completed = !task.completed;
+
+            this.updateLocalDb();  //Must be able to watch for the model change and fire this from one spot....
         },
 
         completeAll: function(){
             this.tasks.forEach(function(task){
                 task.completed = true;
+
             });
+
+            this.updateLocalDb();  //Must be able to watch for the model change and fire this from one spot....
         },
 
         clearCompleted: function() {
-            this.tasks = this.tasks.filter(function(task){
-                return !task.completed;
+            this.tasks.forEach(function(task){
+                task.completed = false;
+
             });
+
+            this.updateLocalDb();  //Must be able to watch for the model change and fire this from one spot....
+        },
+
+        updateLocalDb: function() {
+            var dataToStore = JSON.stringify(this.tasks);
+            localStorage.setItem('tasks', dataToStore);
         }
     }
 })

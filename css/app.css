@@ -10,3 +10,7 @@ li button {
     float: right;
     margin-left: 10px;
 }
+
+li button.complete {
+    color: #449d44;
+}
