@@ -77,17 +77,17 @@
                 <ol class="list-group">
                     <li v-repeat="task: tasks | inProcess" class="list-group-item">
 
-                        <span v-on="dblclick: editTask(task)">{{ task.body }}</span>
+                        <span v-on="click: editTask(task)">{{ task.body }}</span>
 
-                        <button v-on="click: removeTask(task)">&#10007;</button>
-                        <button v-on="click: toggleTaskCompletion(task)" class="complete">&#10004;</button>
+                        <button v-on="click: removeTask(task)" class="btn btn-danger pull-right">Delete</button>
+                        <button v-on="click: toggleTaskCompletion(task)" class="btn btn-success pull-right">Done</button>
                     </li>
                 </ol>
             </div>
 
             <form v-on="submit: addTask">
                 <div class="form-group">
-                    <input v-el="newTask" v-model="newTask" class="form-control" placeholder="I need to ..."></input>
+                    <input v-el="newTask" v-model="newTask" class="form-control input-lg" placeholder="I need to ..."></input>
                 </div>
 
                 <button class="btn btn-primary">Add task</button>
@@ -104,7 +104,7 @@
 
                         {{ task.body }}
 
-                        <button v-on="click: toggleTaskCompletion(task)">&#10007;</button>
+                        <button v-on="click: toggleTaskCompletion(task)" class="btn btn-danger pull-right">Not completed</button>
                     </li>
                 </ol>
 
