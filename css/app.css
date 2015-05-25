@@ -9,8 +9,16 @@ li button {
 }
 
 span.task-description {
-    max-width: 74%;
+    max-width: 80%;
     display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px) {
+    span.task-description {
+        max-width: 50%;
+    }
 }
