@@ -81,7 +81,7 @@
                 <ol class="list-group">
                     <li v-repeat="task: tasks | inProcess" class="list-group-item">
 
-                        <span v-on="click: editTask(task)">{{ task.body }}</span>
+                        <span v-on="click: editTask(task)" class="task-description">{{ task.body }}</span>
 
                         <button v-on="click: removeTask(task)" class="btn btn-danger pull-right">Delete</button>
                         <button v-on="click: toggleTaskCompletion(task)" class="btn btn-success pull-right">Done</button>
@@ -106,7 +106,7 @@
                 <ol class="list-group">
                     <li v-repeat="task: tasks | filterBy true in completed" class="list-group-item">
 
-                        {{ task.body }}
+                        <span class="task-description">{{ task.body }}</span>
 
                         <button v-on="click: toggleTaskCompletion(task)" class="btn btn-danger pull-right">Not completed</button>
                     </li>

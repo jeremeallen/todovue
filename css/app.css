@@ -7,3 +7,10 @@ li {
 li button {
     margin-left: 10px;
 }
+
+span.task-description {
+    max-width: 74%;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
